@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/05/28 17:02:41 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/05/30 19:38:17 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ namespace ft
 			}
 			*/
 		private:
-			T		*_T;
-			Alloc	_allocator;
+			T				*_T;
+			Alloc			_allocator;
+			unsigned int	_size;
 	};
 }
