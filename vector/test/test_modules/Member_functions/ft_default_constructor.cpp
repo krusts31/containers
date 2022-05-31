@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_default_constructor.cpp                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/31 12:26:59 by alkrusts      #+#    #+#                 */
+/*   Updated: 2022/05/31 12:27:00 by alkrusts      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string>
 #include "vector.hpp"
 #include "test_class.hpp"
@@ -16,7 +28,6 @@ int	main()
 
 #ifdef LEAKS
 	system("leaks ft_out");
-	return (0);
 #endif
 #ifdef TIME
 	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
@@ -29,5 +40,5 @@ int	main()
 
 	std::cout << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " sec" << std::endl;
 #endif
-	return (1);
+	return (0);
 }

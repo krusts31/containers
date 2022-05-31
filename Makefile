@@ -10,6 +10,9 @@ ODIR := .obj
 
 OBJ := $(addprefix $(ODIR)/, $(SRC:.cpp=.o))
 
+test:
+	bash vector/test/test_modules/Member_functions/default_construcot.sh
+
 all: creat_dir $(OBJ)
 
 $(ODIR)/%.o: %.cpp
