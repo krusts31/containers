@@ -1,6 +1,26 @@
 {
     "files.associations": {
         "vector": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "type_traits": "cpp",
+        "cstddef": "cpp",
+        "__debug": "cpp",
+        "__hash_table": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "filesystem": "cpp",
+        "fstream": "cpp",
+        "ios": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "sstream": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp"
     }
 }

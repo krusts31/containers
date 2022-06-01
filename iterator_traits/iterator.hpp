@@ -6,14 +6,14 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 16:11:23 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/05/31 16:17:32 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/01 14:00:13 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iterator_traits.hpp"
 
 template <class T>
-class MyIterator : public ft::iterator<std::input_iterator_tag, int>
+class MyIterator : public ft::iterator<std::input_iterator_tag, T>
 {
 	T		*p;
 

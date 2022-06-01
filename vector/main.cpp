@@ -12,11 +12,15 @@
 
 #include "vector.hpp"
 #include <vector>
+#include <iterator>
 
 int	main()
 {
 	std::vector<int>	std_vec;
 	ft::vector<int>		ft_vec;
+
+
+	std::vector::
 
 	system("leaks a.out");
 	return (0);
