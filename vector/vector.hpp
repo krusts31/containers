@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/01 13:33:55 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/01 18:16:02 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ namespace ft
 	template < class _Tp, class _Allocator = std::allocator<_Tp> >
 	class vector
 	{
-		//explicit make sure that the constructor will be invoked by maching the type you pass it
-		//inplicit would mean that if I pass H(11) or h("HAHA") then the comppiler could try to just
-		//convert the "haha" to a integer hence implicite
-		//member funcitons
-
 		public:
 			typedef _Allocator                               allocator_type;
 			typedef std::allocator_traits<allocator_type>    __alloc_traits;
