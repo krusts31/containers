@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/31 13:29:55 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/01 18:12:58 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/02 16:45:34 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 namespace ft
 {
 	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
-	struct iterator
+	struct iterator_traits
 	{
 		typedef T			value_type;
 		typedef Distance	difference_type;
