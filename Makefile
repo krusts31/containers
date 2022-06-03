@@ -35,3 +35,4 @@ dtest:
 	make debug -C vector
 	vector/a.out
 	rm vector/a.out
+	rm -rf vector/a.out.dSYM
