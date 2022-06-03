@@ -28,3 +28,10 @@ re: fclean all
 
 test:
 	make -C vector
+	vector/a.out
+	rm vector/a.out
+
+dtest:
+	make debug -C vector
+	vector/a.out
+	rm vector/a.out

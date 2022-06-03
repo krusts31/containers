@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/02 16:44:47 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/03 15:40:58 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,24 @@ namespace ft
 			typedef _Allocator                               allocator_type;
 			typedef std::allocator_traits<allocator_type>    __alloc_traits;
 			typedef typename __alloc_traits::size_type       size_type;
-			explicit vector(const allocator_type &alloc = _Allocator()) : _allocator(alloc), t(0), _size(0), _start(0), _end(0), _end_of_storage(0)
+
+			explicit vector(const allocator_type &alloc = _Allocator())
 			{
-				//std::cout << "HELLLO from defaul" << std::endl;
+				_allocator = alloc(0);
+				_t = t(0);
+			   	_size = 0;
+				_start = _start(0);
+				_end = _end(0);
+			   	_end_of_storage = _end_of_storage(0)
 			}
+
+			//~vector();
+
+			bool	empty(void) const
+			{
+				return (_size == 0 ? true : false);
+			}
+
 			typedef _Tp                                      value_type;
 			typedef value_type&                              reference;
 			typedef const value_type&                        const_reference;
