@@ -32,12 +32,10 @@ bool	is_default_construct_vec_string_empty(void)
 {
 	ft::vector<std::string>		string_vec;
 
-	/*
 	if (string_vec.empty())
 		return (true);
 	else
-	*/
-	return (false);
+		return (false);
 }
 
 bool	is_default_construct_vec_float_empty(void)

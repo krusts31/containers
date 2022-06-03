@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/03 15:40:58 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/03 16:16:29 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ namespace ft
 
 			explicit vector(const allocator_type &alloc = _Allocator())
 			{
-				_allocator = alloc(0);
-				_t = t(0);
+				_allocator = alloc;
+				_t = _Tp();
 			   	_size = 0;
-				_start = _start(0);
-				_end = _end(0);
-			   	_end_of_storage = _end_of_storage(0)
+				_start = pointer();
+				_end = pointer();
+			   	_end_of_storage = pointer();
 			}
 
 			//~vector();
@@ -71,7 +71,7 @@ namespace ft
 			*/
 		private:
 			allocator_type	_allocator;
-			value_type		t;
+			value_type		_t;
 			unsigned int	_size;
 			pointer			_start;
 			pointer			_end;
