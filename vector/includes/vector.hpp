@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/03 16:16:29 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/03 19:09:14 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,21 @@ namespace ft
 			typedef const_pointer                            const_iterator;
 			typedef typename ft::iterator<value_type>		 iterator;
 
-		protected:
 			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
 			{
-				std::cout << "HELLLO from size" << std::endl;
-				this->_T = _allocator.allocate(n);
+				_allocator = alloc;
+				_t = _Tp();
+			   	_size = 0;
+				_start = pointer();
+				_end = pointer();
+			   	_end_of_storage = pointer();
+				_t = *_allocator.allocate(n);
 				for (size_t i = 0; i < n; i++)
-					_allocator.construct(&this->_T[i], val);
+				{
+					_allocator.construct(&this->_t[i], val);
+				}
 			}
+		protected:
 			/*template <class InputIterator>
 			vector (InputIterator first, InputIterator last, const _Allocator& alloc = _Allocator())
 			{
@@ -73,6 +80,7 @@ namespace ft
 			allocator_type	_allocator;
 			value_type		_t;
 			unsigned int	_size;
+			pointer			;
 			pointer			_start;
 			pointer			_end;
 			pointer			_end_of_storage;//end of alloc space

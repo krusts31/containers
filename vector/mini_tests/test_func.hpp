@@ -1,5 +1,6 @@
 #include "vector.hpp"
 
+#include <vector>
 #include <string>
 
 bool	test_3(void)
@@ -46,4 +47,11 @@ bool	is_default_construct_vec_float_empty(void)
 		return (true);
 	else
 		return (false);
+}
+
+bool	is_fill_constructor_working(void)
+{
+	ft::vector<int>		to_copie(4);
+
+	return (false);
 }
