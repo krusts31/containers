@@ -1,18 +1,16 @@
-NAME=containers.a
 
-FLAGS := -Wall -Werror -Wextra -std=c++98
+FLAGS:=-Wall -Werror -Wextra -std=c++98 -pedantic
 
-CC := c++
+CC:= c++
 
-SRC = vector/vector.cpp \
-	  vector/main.cpp
+SRC:=vector/vector.cpp \
+	  main.cpp
 
-HEADER= -I iterator_traits
+HEADER:=-I vector/includes
 
-ODIR := .obj
+ODIR:=.obj
 
-OBJ := $(addprefix $(ODIR)/, $(SRC:.cpp=.o))
-
+OBJ:=$(addprefix $(ODIR)/, $(SRC:.cpp=.o))
 
 all: creat_dir $(OBJ)
 	$(CC) $(FLAGS) $(HEADER) $(OBJ) -o test
@@ -29,4 +27,4 @@ fclean:
 re: fclean all
 
 test:
-	bash vector/test/test_modules/Member_functions/default_construcot.sh
+	make -C vector

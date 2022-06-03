@@ -1,24 +1,29 @@
-#ifndef UNIT_TEST
-# define UNIT_TEST
-# include <criterion/criterion.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/05/28 14:16:15 by alkrusts      #+#    #+#                 */
+/*   Updated: 2022/06/02 15:24:09 by alkrusts      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
-#endif
-void	tester(double x, double y, double expected);
-double ft_pow(double x, double y)
-{
-	return (x * y);
-}
-Test(Example_Tests, should_pass_all_tests_provided)
-{
-	tester(1.0, 1.0, 1.0);
-}
+#include "vector.hpp"
+#include <vector>
+#include <iterator>
 
-void	tester(double x, double y, double expected)
+int	main()
 {
-	double submitted;
-	submitted = ft_pow(x, y);
-	cr_assert(ft_pow(x, y) == expected,
-		"Submitted:\t%f for %f to the power of %f\nExpected:\t%f\n",
-		submitted, x, y, expected
-		);
+	std::vector<int>	std_vec;
+	static const int arr[] = {16,2,77,29};
+	std::vector<int> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
+	std::vector<int>::iterator ptr;
+
+	ft::vector<int>	ft_vec;
+	ft::vector<int>::iterator ft_ptr;
+	(void)ft_ptr;
+
+	return (0);
 }

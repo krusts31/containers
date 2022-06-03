@@ -49,10 +49,9 @@ namespace ft
 	{
 		private:
 			std::string	name;
-			t_func		func;
 			pid_t 		pid;
 		public:
-			test(t_func f, std::string n, pid_t p = getpid()): name(n), func(f), pid(p)
+			test(t_func f, std::string n, pid_t p = getpid()): name(n), pid(p)
 			{
 				if (f())
 				{
