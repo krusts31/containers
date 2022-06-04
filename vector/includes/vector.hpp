@@ -70,7 +70,6 @@ namespace ft
 				_t = *_allocator.allocate(n); //this looks wrong
 				_capacity = size_type(n);
 			   	_size = size_type();
-			   	_capacity = size_type();
 				(void)val;
 				/*
 				for (size_t i = 0; i < n; i++)
