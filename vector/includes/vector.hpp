@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/04 08:12:36 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/04 10:27:26 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ namespace ft
 			typedef typename __alloc_traits::difference_type difference_type;
 			typedef typename __alloc_traits::pointer         pointer;
 			typedef typename __alloc_traits::const_pointer   const_pointer;
-			typedef const_pointer                            const_iterator;
-			typedef typename ft::iterator<value_type>	 iterator;
+			typedef const_pointer                           const_iterator;
+			typedef typename ft::iterator<value_type>	 	iterator;
 
 
 			explicit vector(const allocator_type &alloc = _Allocator())
@@ -103,16 +103,18 @@ namespace ft
 				//do not dealloc space
 			}
 
-/*
-			void resize (size_type n, value_type val = value_type())
-			{
-				;
-			}
 			void reserve (size_type n)
 			{
+				(void)n;
 				//alloc new bolck
 				//deconstruct old objects
 				//dealocate old objects
+				;
+			}
+
+/*
+			void resize (size_type n, value_type val = value_type())
+			{
 				;
 			}
 */

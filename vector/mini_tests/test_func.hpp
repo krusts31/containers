@@ -77,3 +77,14 @@ bool	test_size(void)
 	else
 		return (false);
 }
+
+bool	test_reserv(void)
+{
+	ft::vector<int>			ft_vec(4);
+	std::vector<int>		std_vec(4);
+
+	if (ft_vec.size() == std_vec.size())
+		return (true);
+	else
+		return (false);
+}
