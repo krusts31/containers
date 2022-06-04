@@ -1,0 +1,3 @@
+[submodule "mini_test"]
+	path = mini_test
+	url = https://github.com/krusts31/mini_test.git
