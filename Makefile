@@ -28,9 +28,9 @@ fclean:
 re: fclean all
 
 test:
-	make -C vector
-	vector/a.out
-	rm vector/a.out
+	make -C mini_test
+	mini_test/a.out
+	rm mini_test/a.out
 
 dtest:
 	make debug -C vector
