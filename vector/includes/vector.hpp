@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/03 19:09:14 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/04 08:12:36 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ namespace ft
 				_iterator = iterator();
 			}
 
+			//fill constructo
 			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
 			{
 				_allocator = alloc;
@@ -54,23 +55,47 @@ namespace ft
 			   	_end_of_storage = pointer();
 				_value = _allocator.allocate(n);
 				_capacity = size_type(n);
-			   	_size = size_type();
-				(void)val;
-				//hmm what should I put here?
+			   	_size = size_type(n);
 				_iterator = iterator();
 				for (size_t i = 0; i < n; i++)
+				{
 					_allocator.construct(&this->_value[i], val);
+					//so to copy it we need a = operator overload
+				}
 			}
 			//~vector();
+			/*
+			vector<_Tp, _Allocator>::operator=(const vector& src)
+			{
+				if (this != &src)
+				{
+
+				}
+			}
+			*/
+
+			/*
+			void push_back(const value_type& val)
+			{
+				
+			}
+			*/
+
+			size_type size(void) const
+			{
+				return (_size);
+			}
 
 			size_type capacity(void) const
 			{
 				return (_capacity);
 			}
+
 			bool	empty(void) const
 			{
 				return (_size == 0 ? true : false);
 			}
+
 			void clear(void)
 			{
 				//iterator over values and call deconstrucotr
@@ -86,7 +111,6 @@ namespace ft
 			void reserve (size_type n)
 			{
 				//alloc new bolck
-				//copy all elements to new bock
 				//deconstruct old objects
 				//dealocate old objects
 				;
@@ -112,7 +136,6 @@ namespace ft
 			value_type		_t;
 			size_type		_size;
 			size_type		_capacity;
-			//pointer			;
 			pointer			_value;
 			pointer			_start;
 			pointer			_end;

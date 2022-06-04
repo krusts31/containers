@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/03 18:44:59 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/04 07:53:58 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main ()
 	(ft::test(is_default_construct_vec_int_empty, "ft::vector<int> ft_int_vec.empty()"));
 	(ft::test(is_fill_constructor_working, "ft::vector<int> fill construcor"));
 	(ft::test(capacity_int_vec_size, "ft::vector<int> ft_int_vec.capacity()"));
+	(ft::test(test_size, "ft::vector<int> ft_int_vec.size()"));
 	std::cout << GREEN << "PASSED: "<< ft::g_passed <<  RED << " FAILED: " << ft::g_failed << RESET << std::endl;
 	return (0);
 }
