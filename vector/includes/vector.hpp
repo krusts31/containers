@@ -38,11 +38,29 @@ namespace ft
 				_t = _Tp();
 			   	_size = size_type();
 			   	_capacity = size_type();
+				_value = pointer();
 				_start = pointer();
 				_end = pointer();
 			   	_end_of_storage = pointer();
+				_iterator = iterator();
 			}
 
+			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
+			{
+				_allocator = alloc;
+				_t = _Tp();
+				_start = pointer();
+				_end = pointer();
+			   	_end_of_storage = pointer();
+				_value = _allocator.allocate(n);
+				_capacity = size_type(n);
+			   	_size = size_type();
+				(void)val;
+				//hmm what should I put here?
+				_iterator = iterator();
+				for (size_t i = 0; i < n; i++)
+					_allocator.construct(&this->_value[i], val);
+			}
 			//~vector();
 
 			size_type capacity(void) const
@@ -74,24 +92,6 @@ namespace ft
 				;
 			}
 */
-			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
-			{
-				_allocator = alloc;	//set the std::allocator
-				_t = _Tp();		//template what the fuck is the if we have value type
-				_start = pointer();
-				_end = pointer();
-			   	_end_of_storage = pointer();
-				_t = *_allocator.allocate(n); //this looks wrong
-				_capacity = size_type(n);
-			   	_size = size_type();
-				(void)val;
-				/*
-				for (size_t i = 0; i < n; i++)
-				{
-					_allocator.construct(&this->_t[i], val);
-				}
-				*/
-			}
 			reference at (size_type n);
 			const_reference at (size_type n) const;
 		protected:
@@ -113,8 +113,10 @@ namespace ft
 			size_type		_size;
 			size_type		_capacity;
 			//pointer			;
+			pointer			_value;
 			pointer			_start;
 			pointer			_end;
+			iterator		_iterator;
 			pointer			_end_of_storage;//end of alloc space
 	};
 }
