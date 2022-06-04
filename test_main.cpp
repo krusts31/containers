@@ -46,6 +46,9 @@ int main()
 	test_func<char>(50, capacity, "capacity()");
 	test_func<char *>(50, capacity, "capacity()");
 	test_func<char **>(50, capacity, "capacity()");
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
 
 	test_func<int>(50, empty, "empty()");
 	test_func<float>(50, empty, "empty()");
@@ -54,6 +57,9 @@ int main()
 	test_func<char>(50, empty, "empty()");
 	test_func<char *>(50, empty, "empty()");
 	test_func<char **>(50, empty, "empty()");
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
 
 	std::cout << GREEN << "PASSED: "<< ft::g_passed <<  RED << " FAILED: " << ft::g_failed << RESET << std::endl;
 	return (0);

@@ -65,7 +65,12 @@ namespace ft
 					//so to copy it we need a = operator overload
 				}
 			}
-			//~vector();
+			~vector()
+			{
+				for (size_t i = 0; i < _size; i++)
+					_allocator.destroy(&this->_value[i]);
+				_allocator.deallocate(this->_value, _capacity);
+			}
 			/*
 			vector<_Tp, _Allocator>::operator=(const vector& src)
 			{

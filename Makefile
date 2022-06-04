@@ -32,6 +32,11 @@ test:
 	mini_test/a.out
 	rm mini_test/a.out
 
+leaks:
+	make -C mini_test leaks
+	mini_test/a.out
+	rm mini_test/a.out
+
 dtest:
 	make debug -C vector
 	vector/a.out
