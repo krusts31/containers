@@ -13,7 +13,7 @@ ODIR:=.obj
 OBJ:=$(addprefix $(ODIR)/, $(SRC:.cpp=.o))
 
 all: creat_dir $(OBJ)
-	$(CC) $(FLAGS) $(HEADER) $(OBJ) -o test
+	$(CC) $(FLAGS) $(HEADER) $(OBJ) -o containers
 
 $(ODIR)/%.o: %.cpp
 	$(CC) $(FLAGS) $(HEADER) -c $< -o $@
@@ -22,6 +22,7 @@ creat_dir:
 	mkdir -p $(ODIR)/vector
 
 fclean:
+	rm -rf containers
 	rm -rf .obj
 
 re: fclean all

@@ -13,17 +13,13 @@
 #include "vector.hpp"
 #include <vector>
 #include <iterator>
+#include <iostream>
 
 int	main()
 {
-	std::vector<int>	std_vec;
-	static const int arr[] = {16,2,77,29};
-	std::vector<int> vec (arr, arr + sizeof(arr) / sizeof(arr[0]) );
-	std::vector<int>::iterator ptr;
+	std::vector<int>	std_vec(4);
+	ft::vector<int>	ft_vec(4);
 
-	ft::vector<int>	ft_vec;
-	ft::vector<int>::iterator ft_ptr;
-	(void)ft_ptr;
-
+	std::cout << std_vec.capacity() << " " << ft_vec.capacity() << std::endl;
 	return (0);
 }

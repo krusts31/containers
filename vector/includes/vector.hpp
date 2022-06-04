@@ -27,7 +27,8 @@ namespace ft
 			{
 				_allocator = alloc;
 				_t = _Tp();
-			   	_size = 0;
+			   	_size = size_type();
+			   	_capacity = size_type();
 				_start = pointer();
 				_end = pointer();
 			   	_end_of_storage = pointer();
@@ -35,6 +36,10 @@ namespace ft
 
 			//~vector();
 
+			size_type capacity() const
+			{
+				return (_capacity);
+			}
 			bool	empty(void) const
 			{
 				return (_size == 0 ? true : false);
@@ -47,22 +52,35 @@ namespace ft
 			typedef typename __alloc_traits::pointer         pointer;
 			typedef typename __alloc_traits::const_pointer   const_pointer;
 			typedef const_pointer                            const_iterator;
-			typedef typename ft::iterator<value_type>		 iterator;
+			typedef typename ft::iterator<value_type>	 iterator;
 
+/*
+			void reserve (size_type n)
+			{
+				;
+			}
+*/
 			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
 			{
-				_allocator = alloc;
-				_t = _Tp();
-			   	_size = 0;
+				_allocator = alloc;	//set the std::allocator
+				_t = _Tp();		//template what the fuck is the if we have value type
 				_start = pointer();
 				_end = pointer();
 			   	_end_of_storage = pointer();
-				_t = *_allocator.allocate(n);
+				_t = *_allocator.allocate(n); //this looks wrong
+				_capacity = size_type(n);
+			   	_size = size_type();
+			   	_capacity = size_type();
+				(void)val;
+				/*
 				for (size_t i = 0; i < n; i++)
 				{
 					_allocator.construct(&this->_t[i], val);
 				}
+				*/
 			}
+			reference at (size_type n);
+			const_reference at (size_type n) const;
 		protected:
 			/*template <class InputIterator>
 			vector (InputIterator first, InputIterator last, const _Allocator& alloc = _Allocator())
@@ -79,8 +97,9 @@ namespace ft
 		private:
 			allocator_type	_allocator;
 			value_type		_t;
-			unsigned int	_size;
-			pointer			;
+			size_type		_size;
+			size_type		_capacity;
+			//pointer			;
 			pointer			_start;
 			pointer			_end;
 			pointer			_end_of_storage;//end of alloc space

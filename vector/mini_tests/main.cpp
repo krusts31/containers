@@ -24,6 +24,7 @@ int main ()
 	(ft::test(is_default_construct_vec_string_empty, "ft::vector<string> ft_string_vec.empty()"));
 	(ft::test(is_default_construct_vec_int_empty, "ft::vector<int> ft_int_vec.empty()"));
 	(ft::test(is_fill_constructor_working, "ft::vector<int> ft_int_vec.empty()"));
+	(ft::test(capacity_int_vec_size, "ft::vector<int> ft_int_vec.capacity()"));
 	std::cout << GREEN << "PASSED: "<< ft::g_passed <<  RED << " FAILED: " << ft::g_failed << RESET << std::endl;
 	return (0);
 }
