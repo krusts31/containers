@@ -6,10 +6,12 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/03 12:54:14 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/03 12:57:06 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/04 15:16:57 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ITERATOR_HPP
+# define ITERATOR_HPP
 #include <cstddef>
 
 namespace ft
@@ -66,3 +68,4 @@ namespace ft
 			reference	operator*() {return *p;}
 	}; 
 }
+#endif

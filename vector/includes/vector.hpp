@@ -6,10 +6,12 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/04 10:27:26 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/04 15:17:28 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef VECTOR_HPP
+# define VECTOR_HPP
 #include <iostream>
 #include "iterator.hpp"
 
@@ -145,3 +147,4 @@ namespace ft
 			pointer			_end_of_storage;//end of alloc space
 	};
 }
+#endif
