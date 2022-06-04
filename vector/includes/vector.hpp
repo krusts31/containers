@@ -22,6 +22,15 @@ namespace ft
 			typedef _Allocator                               allocator_type;
 			typedef std::allocator_traits<allocator_type>    __alloc_traits;
 			typedef typename __alloc_traits::size_type       size_type;
+			typedef _Tp                                      value_type;
+			typedef value_type&                              reference;
+			typedef const value_type&                        const_reference;
+			typedef typename __alloc_traits::difference_type difference_type;
+			typedef typename __alloc_traits::pointer         pointer;
+			typedef typename __alloc_traits::const_pointer   const_pointer;
+			typedef const_pointer                            const_iterator;
+			typedef typename ft::iterator<value_type>	 iterator;
+
 
 			explicit vector(const allocator_type &alloc = _Allocator())
 			{
@@ -36,7 +45,7 @@ namespace ft
 
 			//~vector();
 
-			size_type capacity() const
+			size_type capacity(void) const
 			{
 				return (_capacity);
 			}
@@ -44,19 +53,24 @@ namespace ft
 			{
 				return (_size == 0 ? true : false);
 			}
-
-			typedef _Tp                                      value_type;
-			typedef value_type&                              reference;
-			typedef const value_type&                        const_reference;
-			typedef typename __alloc_traits::difference_type difference_type;
-			typedef typename __alloc_traits::pointer         pointer;
-			typedef typename __alloc_traits::const_pointer   const_pointer;
-			typedef const_pointer                            const_iterator;
-			typedef typename ft::iterator<value_type>	 iterator;
+			void clear(void)
+			{
+				//iterator over values and call deconstrucotr
+				//set size to 0
+				//do not dealloc space
+			}
 
 /*
+			void resize (size_type n, value_type val = value_type())
+			{
+				;
+			}
 			void reserve (size_type n)
 			{
+				//alloc new bolck
+				//copy all elements to new bock
+				//deconstruct old objects
+				//dealocate old objects
 				;
 			}
 */
