@@ -12,8 +12,9 @@
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
-#include <iostream>
-#include "iterator.hpp"
+# include <iostream>
+# include <assert.h>
+# include "iterator.hpp"
 
 namespace ft
 {
@@ -41,7 +42,7 @@ namespace ft
 			   	_size = size_type();
 			   	_capacity = size_type();
 				_value = pointer();
-				_start = pointer();
+				_begin = pointer();
 				_end = pointer();
 			   	_end_of_storage = pointer();
 				_iterator = iterator();
@@ -52,7 +53,7 @@ namespace ft
 			{
 				_allocator = alloc;
 				_t = _Tp();
-				_start = pointer();
+				_begin = pointer();
 				_end = pointer();
 			   	_end_of_storage = pointer();
 				_value = _allocator.allocate(n);
@@ -71,12 +72,30 @@ namespace ft
 					_allocator.destroy(&this->_value[i]);
 				_allocator.deallocate(this->_value, _capacity);
 			}
+/*
+vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
+{
+    _LIBCPP_ASSERT(__n < size(), "vector[] index out of bounds");
+    return this->__begin_[__n];
+}
+*/
 			/*
 			vector<_Tp, _Allocator>::operator=(const vector& src)
 			{
 				if (this != &src)
 				{
-
+					// alloc space
+					//this->_allocator = srcj;
+					allocator_type	_allocator;
+					value_type		_t;
+					size_type		_size;
+					size_type		_capacity;
+					pointer			_value;
+					pointer			_begin;
+					pointer			_end;
+					iterator		_iterator;
+					pointer			_end_of_storage;//end of alloc space
+					//here we need to invoke the copy contructor of possible objects
 				}
 			}
 			*/
@@ -91,6 +110,12 @@ namespace ft
 			size_type size(void) const
 			{
 				return (_size);
+			}
+
+			vector<_Tp, _Allocator>operator[](size_type)
+			{
+				assert(index < size());
+				return(this->_begin[index]);
 			}
 
 			size_type capacity(void) const
@@ -110,15 +135,17 @@ namespace ft
 				//do not dealloc space
 			}
 
-			void reserve (size_type n)
+/*
+			void reserve(size_type n)
 			{
-				(void)n;
+				//for this we need a operator overload!
+				pointer _tmp_value = _allocator.allocate(n);
 				//alloc new bolck
 				//deconstruct old objects
 				//dealocate old objects
 				;
 			}
-
+*/
 /*
 			void resize (size_type n, value_type val = value_type())
 			{
@@ -146,7 +173,7 @@ namespace ft
 			size_type		_size;
 			size_type		_capacity;
 			pointer			_value;
-			pointer			_start;
+			pointer			_begin;
 			pointer			_end;
 			iterator		_iterator;
 			pointer			_end_of_storage;//end of alloc space
