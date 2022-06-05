@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 18:53:56 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 22:42:15 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ namespace ft
 				_t = _Tp();
 			   	_size = size_type(0);
 			   	_capacity = size_type(0);
-				//_value = pointer();
-				//_begin = pointer();
-				//_end = pointer();
-			   	//_end_of_storage = pointer();
 				_iterator = iterator();
 				_value = _allocator.allocate(0);
 				_begin = &this->_value[0];
@@ -59,9 +55,7 @@ namespace ft
 			explicit vector(size_t n, const _Tp& val = _Tp(), const _Allocator& alloc = _Allocator()) : _allocator(alloc)
 			{
 				_allocator = alloc;
-				_t = _Tp();
-				//_begin = pointer();
-				//_end = pointer();
+				_t = val;
 				_value = _allocator.allocate(n);
 				_capacity = size_type(n);
 			   	_size = size_type(n);
@@ -88,26 +82,26 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
     return this->__begin_[__n];
 }
 */
-			/*
-			vector<_Tp, _Allocator>::operator=(const vector& src)
+			vector& operator=(const vector& src)
 			{
 				if (this != &src)
 				{
-					// alloc space
-					//this->_allocator = srcj;
-					allocator_type	_allocator;
-					value_type		_t;
-					size_type		_size;
-					size_type		_capacity;
-					pointer			_value;
-					pointer			_begin;
-					pointer			_end;
-					iterator		_iterator;
-					pointer			_end_of_storage;//end of alloc space
-					//here we need to invoke the copy contructor of possible objects
+					_allocator = src.get_allocator();
+					_t = src._t;
+					_iterator = src._iterator;
+					for (size_t i = 0; i < _size; i++)
+						_allocator.destroy(&this->_value[i]);
+					_allocator.deallocate(this->_value, _capacity);
+					_size = src.size();
+					_value = _allocator.allocate(_size);
+					for (size_t i = 0; i < _size; i++)
+						_allocator.construct(&this->_value[i], _t);
+					_begin = &src._value[0];
+					_end = &src._value[_size];
+					_end_of_storage = &src._value[_size + 1];
 				}
+				return (*this);
 			}
-			*/
 
 			/*
 			void push_back(const value_type& val)
@@ -116,6 +110,10 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 			}
 			*/
 
+			allocator_type get_allocator(void) const
+			{
+				return (_allocator);
+			}
 			size_type size(void) const
 			{
 				return (_size);

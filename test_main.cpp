@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 19:01:06 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 22:43:34 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	mini_test_func(int size, bool (*f)(std::vector<T> *, ft::vector<T> *),
 		}
 		else
 		{
+			return ;
 			ft_vec = new ft::vector<T>;
 			std_vec = new std::vector<T>;
 		}
@@ -65,6 +66,8 @@ void	mini_test_func(int size, bool (*f)(std::vector<T> *, ft::vector<T> *),
 		delete ft_vec;
 		delete std_vec;
 		size--;
+		if (def == constructor)
+			return ;
 	}
 }
 
@@ -74,16 +77,17 @@ int main()
 	using namespace mini_test;
 
 	enum constructor{def, fill, fill_2, range, copy};
+	int	size = 2;
 
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
-		mini_test_func<int>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<float>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<double>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<std::string>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<char>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<char *>(50, capacity, "capacity()", CONSTRUCTOR);
-		mini_test_func<char **>(50, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<int>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<float>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<double>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<std::string>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<char>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<char *>(size, capacity, "capacity()", CONSTRUCTOR);
+		mini_test_func<char **>(size, capacity, "capacity()", CONSTRUCTOR);
 	}
 
 #ifdef LEAKS
@@ -92,13 +96,28 @@ int main()
 
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
-		mini_test_func<int>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<float>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<double>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<std::string>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<char>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<char *>(50, empty, "empty()", CONSTRUCTOR);
-		mini_test_func<char **>(50, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<int>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<float>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<double>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<std::string>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<char>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<char *>(size, empty, "empty()", CONSTRUCTOR);
+		mini_test_func<char **>(size, empty, "empty()", CONSTRUCTOR);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func<int>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<float>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<double>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<std::string>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<char>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<char *>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
+		mini_test_func<char **>(size, get_allocator, "get_allocator()", CONSTRUCTOR);
 	}
 
 #ifdef LEAKS
@@ -106,19 +125,30 @@ int main()
 #endif
 
 	/*
-	mini_test_func<int>(50, accses_operator, "[]()");
-	mini_test_func<float>(50, accses_operator, "[]()");
-	mini_test_func<double>(50, accses_operator, "[]()");
-	mini_test_func<std::string>(50, accses_operator, "[]()");
-	mini_test_func<char>(50, accses_operator, "[]()");
-	mini_test_func<char *>(50, accses_operator, "[]()");
-	mini_test_func<char **>(50, accses_operator, "[]()");
+	mini_test_func<int>(size, accses_operator, "[]()");
+	mini_test_func<float>(size, accses_operator, "[]()");
+	mini_test_func<double>(size, accses_operator, "[]()");
+	mini_test_func<std::string>(size, accses_operator, "[]()");
+	mini_test_func<char>(size, accses_operator, "[]()");
+	mini_test_func<char *>(size, accses_operator, "[]()");
+	mini_test_func<char **>(size, accses_operator, "[]()");
 
 #ifdef LEAKS
 	system("leaks a.out");
 #endif
 */
 
+	mini_test_func<int>(size, assign_operator, "=()");
+	mini_test_func<float>(size, assign_operator, "=()");
+	mini_test_func<double>(size, assign_operator, "=()");
+	mini_test_func<std::string>(size, assign_operator, "=()");
+	mini_test_func<char>(size, assign_operator, "=()");
+	mini_test_func<char *>(size, assign_operator, "=()");
+	mini_test_func<char **>(size, assign_operator, "=()");
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
 	std::cout << GREEN << "PASSED: "<< g_passed <<  RED << " FAILED: " << g_failed << RESET << std::endl;
 	return (0);
 }

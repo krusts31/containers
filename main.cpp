@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:16:15 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/04 11:33:58 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 22:40:55 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 int	main()
 {
 	std::vector<int>	std_vec;
-	ft::vector<int>	ft_vec(4);
+	ft::vector<int>		ft_vec(4);
+	ft::vector<int>		ft_vec_2(8);
 
-	std_vec.reserve(10);
-	std::cout << std_vec.size() << " " << ft_vec.size() << std::endl;
+	std::cout << ft_vec.size() << " " << ft_vec_2.size() << std::endl;
+	ft_vec_2 = ft_vec;
+	std::cout << ft_vec.size() << " " << ft_vec_2.size() << std::endl;
 	return (0);
 }

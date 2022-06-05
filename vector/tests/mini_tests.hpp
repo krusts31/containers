@@ -22,6 +22,14 @@ bool	is_fill_constructor_working(void)
 }
 
 template < class T >
+bool	get_allocator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	if (ft_vec->get_allocator() != std_vec->get_allocator())
+		return (false);
+	return (true);
+}
+
+template < class T >
 bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
 	if (ft_vec->capacity() != std_vec->capacity())
@@ -29,6 +37,13 @@ bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 	return (true);
 }
 
+template < class T >
+bool	assign_operator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	if (ft_vec->capacity() != std_vec->capacity())
+		return (false);
+	return (true);
+}
 /*
  * before setting up this I need to make the fill constructor
 template < class T >

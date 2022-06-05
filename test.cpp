@@ -69,8 +69,10 @@ int main()
 	test_2	lol2;
 	std::cout << lol2.get_x(lol) << std::endl;
 	*/
+	std::vector<int>	vec1(20);
+	std::vector<std::string>	vec2(3);
 
-	func<int>();
-
+	vec1 = vec2;
+	std::cout << vec1.size() << std::endl;
     return (0);
 }
