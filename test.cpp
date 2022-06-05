@@ -1,3 +1,4 @@
+#include "vector.hpp"
 #include <iostream>
 #include <type_traits>
 #include <string>
@@ -69,9 +70,10 @@ int main()
 	test_2	lol2;
 	std::cout << lol2.get_x(lol) << std::endl;
 	*/
-	std::vector<int>	vec1(20);
-	std::vector<std::string>	vec2(3);
+	ft::vector<int>		vec1(20);
+	std::vector<int>	vec2(3);
 
+	std::cout << vec1.size() << std::endl;
 	vec1 = vec2;
 	std::cout << vec1.size() << std::endl;
     return (0);

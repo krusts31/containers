@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 22:42:15 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 23:18:36 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 					_allocator.deallocate(this->_value, _capacity);
 					_size = src.size();
 					_value = _allocator.allocate(_size);
+					_capacity = size_type(_size);
 					for (size_t i = 0; i < _size; i++)
 						_allocator.construct(&this->_value[i], _t);
 					_begin = &src._value[0];

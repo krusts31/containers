@@ -38,12 +38,18 @@ bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 }
 
 template < class T >
-bool	assign_operator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+bool	assign_operator(ft::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
+	*ft_vec = *std_vec;
+
+	//need to make iterators work so that I could test weather or not all the values have been copied
+	if (ft_vec->size() != std_vec->size())
+		return (false);
 	if (ft_vec->capacity() != std_vec->capacity())
 		return (false);
 	return (true);
 }
+
 /*
  * before setting up this I need to make the fill constructor
 template < class T >

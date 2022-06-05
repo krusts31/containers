@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 22:43:34 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 23:17:53 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,46 @@
 //the unit thet has to mini_test the functoins 
 
 enum constructor{def, fill, fill_2, range, copy};
+
+template < class T>
+void	mini_test_func_2(int size, bool (*f)(ft::vector<T> *, ft::vector<T> *),
+		std::string name,
+		int constructor)
+{
+	ft::vector<T>		*ft_vec;
+	ft::vector<T>		*ft_vec2;
+
+	while (size != -1)
+	{
+		if (constructor == def)
+		{
+			ft_vec = new ft::vector<T>;
+			ft_vec2 = new ft::vector<T>;
+		}
+		else if (constructor == fill)
+		{
+			ft_vec = new ft::vector<T>(size);
+			ft_vec2 = new ft::vector<T>(size + 20);
+		}
+		else if (constructor == fill_2)
+		{
+			ft_vec = new ft::vector<T>(size, T());
+			ft_vec2 = new ft::vector<T>(size + 20, T());
+		}
+		else
+		{
+			return ;
+			ft_vec = new ft::vector<T>;
+			ft_vec2 = new ft::vector<T>;
+		}
+		mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor);
+		delete ft_vec;
+		delete ft_vec2;
+		size--;
+		if (def == constructor)
+			return ;
+	}
+}
 
 template < class T>
 void	mini_test_func(int size, bool (*f)(std::vector<T> *, ft::vector<T> *),
@@ -138,13 +178,16 @@ int main()
 #endif
 */
 
-	mini_test_func<int>(size, assign_operator, "=()");
-	mini_test_func<float>(size, assign_operator, "=()");
-	mini_test_func<double>(size, assign_operator, "=()");
-	mini_test_func<std::string>(size, assign_operator, "=()");
-	mini_test_func<char>(size, assign_operator, "=()");
-	mini_test_func<char *>(size, assign_operator, "=()");
-	mini_test_func<char **>(size, assign_operator, "=()");
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func_2<int>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<float>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<double>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<std::string>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<char>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<char *>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+		mini_test_func_2<char **>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+	}
 
 #ifdef LEAKS
 	system("leaks a.out");
