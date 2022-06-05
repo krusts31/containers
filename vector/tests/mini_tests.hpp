@@ -59,4 +59,19 @@ bool	accses_operator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 	return (true);
 }
 */
+
+template < class T >
+bool	reserve(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		ft_vec->reserve(i);
+		std_vec->reserve(i);
+		assert(ft_vec->capacity() == std_vec->capacity());
+		std::cout << ft_vec->size() << " " << std_vec->size() << std::endl;
+		assert(ft_vec->size() == std_vec->size());
+	}
+	return (true);
+}
+
 #endif

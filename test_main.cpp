@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 23:17:53 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 23:29:16 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,20 @@ int main()
 		mini_test_func_2<char>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
 		mini_test_func_2<char *>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
 		mini_test_func_2<char **>(size, assign_operator, "=(ft::vector)", CONSTRUCTOR);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func<int>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<float>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<double>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<std::string>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<char>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<char *>(size, reserve, "reserve(n)", CONSTRUCTOR);
+		mini_test_func<char **>(size, reserve, "reserve(n)", CONSTRUCTOR);
 	}
 
 #ifdef LEAKS

@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 23:18:36 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 23:33:42 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,17 +143,25 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 				//do not dealloc space
 			}
 
-/*
 			void reserve(size_type n)
 			{
-				//for this we need a operator overload!
-				pointer _tmp_value = _allocator.allocate(n);
-				//alloc new bolck
-				//deconstruct old objects
-				//dealocate old objects
-				;
+				//reserver is tricky
+				if (n > _size)
+				{
+					pointer _tmp_value = _allocator.allocate(n);
+					for (size_t i = 0; i < n; i++)
+						_allocator.construct(&_tmp_value[i], _t);
+					for (size_t i = 0; i < _size; i++)
+						_allocator.destroy(&this->_value[i]);
+					_allocator.deallocate(this->_value, _capacity);
+					_value = _tmp_value;
+					_size = n;
+					_capacity = n;
+					_begin = &this->_value[0];
+					_end = &this->_value[_size];
+					_end_of_storage = &this->_value[_size + 1];
+				}
 			}
-*/
 /*
 			void resize (size_type n, value_type val = value_type())
 			{
