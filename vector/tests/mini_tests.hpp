@@ -28,4 +28,14 @@ bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 		return (false);
 	return (true);
 }
+
+/*
+ * before setting up this I need to make the fill constructor
+template < class T >
+bool	accses_operator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	//ft_vec[] == std_vec[]
+	return (true);
+}
+*/
 #endif

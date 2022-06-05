@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 13:08:09 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 18:53:56 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ namespace ft
 	class vector
 	{
 		public:
+			#ifdef MINI_TEST
+				friend class mini_test;
+			#endif
 			typedef _Allocator                               allocator_type;
 			typedef std::allocator_traits<allocator_type>    __alloc_traits;
 			typedef typename __alloc_traits::size_type       size_type;
@@ -39,13 +42,17 @@ namespace ft
 			{
 				_allocator = alloc;
 				_t = _Tp();
-			   	_size = size_type();
-			   	_capacity = size_type();
-				_value = pointer();
-				_begin = pointer();
-				_end = pointer();
-			   	_end_of_storage = pointer();
+			   	_size = size_type(0);
+			   	_capacity = size_type(0);
+				//_value = pointer();
+				//_begin = pointer();
+				//_end = pointer();
+			   	//_end_of_storage = pointer();
 				_iterator = iterator();
+				_value = _allocator.allocate(0);
+				_begin = &this->_value[0];
+				_end = &this->_value[_size];
+			   	_end_of_storage = &this->_value[_size + 1];
 			}
 
 			//fill constructo
