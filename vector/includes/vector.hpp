@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/04 15:17:28 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/05 13:08:09 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ namespace ft
 			{
 				_allocator = alloc;
 				_t = _Tp();
-				_begin = pointer();
-				_end = pointer();
-			   	_end_of_storage = pointer();
+				//_begin = pointer();
+				//_end = pointer();
 				_value = _allocator.allocate(n);
 				_capacity = size_type(n);
 			   	_size = size_type(n);
@@ -65,6 +64,9 @@ namespace ft
 					_allocator.construct(&this->_value[i], val);
 					//so to copy it we need a = operator overload
 				}
+				_begin = &this->_value[0];
+				_end = &this->_value[_size];
+			   	_end_of_storage = &this->_value[_size + 1];
 			}
 			~vector()
 			{

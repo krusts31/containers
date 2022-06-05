@@ -38,7 +38,7 @@ leaks:
 	rm mini_test/a.out
 
 dtest:
-	make debug -C vector
-	vector/a.out
-	rm vector/a.out
+	make -C mini_test dtest
+	mini_test/a.out
+	rm mini_test/a.out
 	rm -rf vector/a.out.dSYM
