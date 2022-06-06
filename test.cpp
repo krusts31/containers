@@ -1,4 +1,4 @@
-//#include "vector.hpp"
+#include "vector.hpp"
 #include <iostream>
 #include <type_traits>
 #include <string>
@@ -75,7 +75,6 @@ int main()
 	std::cout << vec1.size() << std::endl;
 	vec1 = vec2;
 	std::cout << vec1.size() << std::endl;
-	*/
 
 	std::vector<int>	vec2(10, 4);
 
@@ -87,4 +86,9 @@ int main()
 		std::cout << *iter << std::endl;
 	std::cout << "capacity:" << vec2.capacity() << "size:" << vec2.size() << std::endl;
     return (0);
+	*/
+	ft::vector<int>	test(10, 100);
+	ft::vector<int>::iterator	iter;
+
+	//for (i
 }
