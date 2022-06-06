@@ -9,8 +9,7 @@
 template < class T >
 bool	empty(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
-	if (ft_vec->empty() != std_vec->empty())
-		return (false);
+	assert(ft_vec->empty() == std_vec->empty());
 	return (true);
 }
 
@@ -24,34 +23,29 @@ bool	is_fill_constructor_working(void)
 template < class T >
 bool	get_allocator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
-	if (ft_vec->get_allocator() != std_vec->get_allocator())
-		return (false);
+	assert(ft_vec->get_allocator() == std_vec->get_allocator());
 	return (true);
 }
 
 template < class T >
 bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
-	if (ft_vec->capacity() != std_vec->capacity())
-		return (false);
+	assert(ft_vec->capacity() == std_vec->capacity());
 	return (true);
 }
 
 template < class T >
-bool	assign_operator(ft::vector<T> *std_vec, ft::vector<T> *ft_vec)
+bool	assign_operator(ft::vector<T> *ft_vec_2, ft::vector<T> *ft_vec)
 {
-	*ft_vec = *std_vec;
+	*ft_vec = *ft_vec_2;
 
-	//need to make iterators work so that I could test weather or not all the values have been copied
-	if (ft_vec->size() != std_vec->size())
-		return (false);
-	if (ft_vec->capacity() != std_vec->capacity())
-		return (false);
+	//set up iterators
+	assert(ft_vec->size() == ft_vec_2->size());
+	assert(ft_vec->capacity() == ft_vec_2->capacity());
 	return (true);
 }
 
 /*
- * before setting up this I need to make the fill constructor
 template < class T >
 bool	accses_operator(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
@@ -68,7 +62,6 @@ bool	reserve(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 		ft_vec->reserve(i);
 		std_vec->reserve(i);
 		assert(ft_vec->capacity() == std_vec->capacity());
-		std::cout << ft_vec->size() << " " << std_vec->size() << std::endl;
 		assert(ft_vec->size() == std_vec->size());
 	}
 	return (true);

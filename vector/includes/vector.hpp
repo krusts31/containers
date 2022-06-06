@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/05 23:33:42 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/06 15:25:56 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 						_allocator.destroy(&this->_value[i]);
 					_allocator.deallocate(this->_value, _capacity);
 					_value = _tmp_value;
-					_size = n;
 					_capacity = n;
 					_begin = &this->_value[0];
 					_end = &this->_value[_size];

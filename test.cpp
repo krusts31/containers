@@ -1,4 +1,4 @@
-#include "vector.hpp"
+//#include "vector.hpp"
 #include <iostream>
 #include <type_traits>
 #include <string>
@@ -69,12 +69,22 @@ int main()
 	test 	lol(29);
 	test_2	lol2;
 	std::cout << lol2.get_x(lol) << std::endl;
-	*/
 	ft::vector<int>		vec1(20);
 	std::vector<int>	vec2(3);
 
 	std::cout << vec1.size() << std::endl;
 	vec1 = vec2;
 	std::cout << vec1.size() << std::endl;
+	*/
+
+	std::vector<int>	vec2(10, 4);
+
+	for (std::vector<int>::iterator iter = vec2.begin(); iter != vec2.end(); iter++)
+		std::cout << *iter << std::endl;
+	std::cout << "capacity:" << vec2.capacity() << "size:" << vec2.size() << std::endl;
+	vec2.reserve(50);
+	for (std::vector<int>::iterator iter = vec2.begin(); iter != vec2.end(); iter++)
+		std::cout << *iter << std::endl;
+	std::cout << "capacity:" << vec2.capacity() << "size:" << vec2.size() << std::endl;
     return (0);
 }
