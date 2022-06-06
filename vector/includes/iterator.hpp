@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/03 12:54:14 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/04 15:16:57 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/06 19:06:32 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ namespace ft
 	class iterator : public iterator_traits<random_access_iterator_tag, _Tp>
 	{
 		private:
-			typedef _Tp	*pointer;
-			typedef _Tp	&reference;
+			typedef _Tp				*pointer;
+			typedef const _Tp		*const_pointer;
+			typedef _Tp				&reference;
+			typedef const _Tp		&const_reference;
 
-			pointer		p;
+			pointer				p;
 
 		public:
 			iterator() :p(0) {}
+			iterator(pointer t): p(t) {}
 
 			iterator(const iterator& mit) : p(mit.p) {}
 

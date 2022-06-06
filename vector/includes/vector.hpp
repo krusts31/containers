@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/06 17:58:49 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/06 19:15:15 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ namespace ft
 			#endif
 			typedef _Allocator                               allocator_type;
 			typedef std::allocator_traits<allocator_type>    __alloc_traits;
+
 			typedef typename __alloc_traits::size_type       size_type;
 			typedef _Tp                                      value_type;
+
 			typedef const _Tp                                const_value_type;
 			typedef value_type&                              reference;
 			typedef const value_type&                        const_reference;
+
 			typedef typename __alloc_traits::difference_type difference_type;
 			typedef typename __alloc_traits::pointer         pointer;
 			typedef typename __alloc_traits::const_pointer   const_pointer;
+
 			typedef typename ft::iterator<value_type>	 	 iterator;
 			typedef typename ft::iterator<const_value_type>	 const_iterator;
 
@@ -162,18 +166,22 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 					_end_of_storage = &this->_value[_size + 1];
 				}
 			}
+
 			iterator begin(void)
 			{
-				return (iterator(_begin));
+				return(iterator(_begin));
 			}
+
 			const_iterator begin(void) const
 			{
-				return (const_iterator(_begin));
+				return(const_iterator(_begin));
 			}
+
 			iterator end(void)
 			{
 				return(iterator(_end));
 			}
+
 			const_iterator end(void) const
 			{
 				return(const_iterator(_end));

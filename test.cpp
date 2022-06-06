@@ -89,6 +89,10 @@ int main()
 	*/
 	ft::vector<int>	test(10, 100);
 	ft::vector<int>::iterator	iter;
+	ft::vector<int>::const_iterator	c_iter;
 
-	//for (i
+	for (iter = test.begin(); iter != test.end(); iter++)
+		std::cout << *iter << std::endl;
+	for (c_iter = test.begin(); c_iter != test.end(); c_iter++)
+		std::cout << *c_iter << std::endl;
 }
