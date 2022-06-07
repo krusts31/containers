@@ -6,13 +6,13 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/03 12:54:14 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/06 19:06:32 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/07 20:06:39 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_HPP
 # define ITERATOR_HPP
-#include <cstddef>
+# include <cstddef>
 
 namespace ft
 {
@@ -52,9 +52,7 @@ namespace ft
 	{
 		private:
 			typedef _Tp				*pointer;
-			typedef const _Tp		*const_pointer;
 			typedef _Tp				&reference;
-			typedef const _Tp		&const_reference;
 
 			pointer				p;
 
@@ -71,4 +69,5 @@ namespace ft
 			reference	operator*() {return *p;}
 	}; 
 }
+
 #endif
