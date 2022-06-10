@@ -35,6 +35,13 @@ bool	capacity(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 }
 
 template < class T >
+bool	size(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	assert(ft_vec->size() == std_vec->size());
+	return (true);
+}
+
+template < class T >
 bool	assign_operator(ft::vector<T> *ft_vec_2, ft::vector<T> *ft_vec)
 {
 	*ft_vec = *ft_vec_2;

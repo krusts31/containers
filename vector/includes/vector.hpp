@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/06 19:15:15 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/10 23:55:53 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,16 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 			{
 				return (_allocator);
 			}
+
 			size_type size(void) const
 			{
 				return (_size);
+			}
+
+
+			size_type max_size(void) const
+			{
+				return (_allocator.max_size());
 			}
 
 			vector<_Tp, _Allocator>operator[](size_type)

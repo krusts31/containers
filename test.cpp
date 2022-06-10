@@ -86,13 +86,17 @@ int main()
 		std::cout << *iter << std::endl;
 	std::cout << "capacity:" << vec2.capacity() << "size:" << vec2.size() << std::endl;
     return (0);
-	*/
 	ft::vector<int>	test(10, 100);
 	ft::vector<int>::iterator	iter;
-	//ft::vector<int>::const_iterator	c_iter;
 
 	for (iter = test.begin(); iter != test.end(); iter++)
 		std::cout << *iter << std::endl;
-//	for (c_iter = test.begin(); c_iter != test.end(); c_iter++)
-//		std::cout << *c_iter << std::endl;
+	*/
+	const ft::vector<int>			test(10, 100);
+	ft::vector<int>::const_iterator	iter;
+
+	
+	for (iter = test.begin(); iter != test.end(); iter++)
+		std::cout << *iter << std::endl;
+
 }
