@@ -13,6 +13,35 @@ bool	empty(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 	return (true);
 }
 
+template < class T >
+bool	begin(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	typename std::vector<T>::iterator	std_iterator = std_vec->begin();
+	typename ft::vector<T>::iterator		ft_iterator = ft_vec->begin();
+
+	//if the vectors are empty then there is segault when derefrescing a iterator
+	if (!ft_vec->size() && !std_vec->size())
+		return (true);
+	assert(*ft_iterator == *std_iterator);
+	return (true);
+}
+
+template < class T >
+bool	end(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
+{
+	typename std::vector<T>::iterator	std_iterator = std_vec->end();
+	typename ft::vector<T>::iterator		ft_iterator = ft_vec->end();
+
+	//if the vectors are empty then there is segault when derefrescing a iterator
+	if (!ft_vec->size() && !std_vec->size())
+		return (true);
+	std::cout << std_vec->size() << " " << ft_vec->size() << std::endl;
+	std::cout << *ft_iterator << " " << *std_iterator << std::endl;
+	if (*ft_iterator != *std_iterator)
+		return (false);
+	return (true);
+}
+
 bool	is_fill_constructor_working(void)
 {
 	ft::vector<int>		to_copie(4);

@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/11 00:04:45 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/11 00:34:56 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,36 @@ int main()
 	system("leaks a.out");
 #endif
 */
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func<int>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<float>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<double>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<std::string>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<char>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<char *>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+		mini_test_func<char **>(size_of_vec, begin, "begin()", CONSTRUCTOR);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func<int>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<float>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<double>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<std::string>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<char>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<char *>(size_of_vec, end, "end()", CONSTRUCTOR);
+		mini_test_func<char **>(size_of_vec, end, "end()", CONSTRUCTOR);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+
 	std::cout << GREEN << "PASSED: "<< g_passed <<  RED << " FAILED: " << g_failed << RESET << std::endl;
 	return (0);
 }

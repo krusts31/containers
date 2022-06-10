@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/10 23:55:53 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/11 00:21:45 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,15 @@ namespace ft
 					_allocator.destroy(&this->_value[i]);
 				_allocator.deallocate(this->_value, _capacity);
 			}
-/*
-vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
-{
-    _LIBCPP_ASSERT(__n < size(), "vector[] index out of bounds");
-    return this->__begin_[__n];
-}
-*/
+
+			/*
+			vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
+			{
+				_LIBCPP_ASSERT(__n < size(), "vector[] index out of bounds");
+				return this->__begin_[__n];
+			}
+			*/
+
 			vector& operator=(const vector& src)
 			{
 				if (this != &src)
@@ -125,7 +127,6 @@ vector<_Tp, _Allocator>::operator[](size_type __n) _NOEXCEPT
 			{
 				return (_size);
 			}
-
 
 			size_type max_size(void) const
 			{
