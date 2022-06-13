@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/11 00:34:56 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/13 21:05:50 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,27 @@ void	mini_test_func_2(int size_of_vec, bool (*f)(ft::vector<T> *, ft::vector<T> 
 		{
 			ft_vec = new ft::vector<T>;
 			ft_vec2 = new ft::vector<T>;
+			mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor, NULL, NULL);
 		}
 		else if (constructor == fill)
 		{
 			ft_vec = new ft::vector<T>(size_of_vec);
 			ft_vec2 = new ft::vector<T>(size_of_vec + 20);
+			mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor, size_of_vec, NULL);
 		}
 		else if (constructor == fill_2)
 		{
 			ft_vec = new ft::vector<T>(size_of_vec, T());
 			ft_vec2 = new ft::vector<T>(size_of_vec + 20, T());
+			mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor, size_of_vec, T());
 		}
 		else
 		{
 			return ;
 			ft_vec = new ft::vector<T>;
 			ft_vec2 = new ft::vector<T>;
+			mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor, NULL, NULL);
 		}
-		mini_test::mini_test<T>(name, f, ft_vec, ft_vec2, constructor);
 		delete ft_vec;
 		delete ft_vec2;
 		size_of_vec--;

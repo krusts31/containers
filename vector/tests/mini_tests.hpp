@@ -30,14 +30,20 @@ template < class T >
 bool	end(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
 	typename std::vector<T>::iterator	std_iterator = std_vec->end();
-	typename ft::vector<T>::iterator		ft_iterator = ft_vec->end();
+	//typename ft::vector<T>::iterator		ft_iterator = ft_vec->end();
 
 	//if the vectors are empty then there is segault when derefrescing a iterator
 	if (!ft_vec->size() && !std_vec->size())
 		return (true);
 	std::cout << std_vec->size() << " " << ft_vec->size() << std::endl;
-	std::cout << *ft_iterator << " " << *std_iterator << std::endl;
-	if (*ft_iterator != *std_iterator)
+	//std::cout << *ft_iterator << " " << *std_iterator << std::endl;
+	//typename std::vector<T>::iterator	std_iterator_2 = std_vec->begin();
+	/*while (std_iterator != std_iterator_2)
+	{
+		std::cout << *std_iterator << std::endl;
+		std_iterator++;
+	}*/
+	std::cout << *std_iterator << std::endl;
 		return (false);
 	return (true);
 }
