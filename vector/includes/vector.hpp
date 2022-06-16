@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 23:49:07 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/17 00:37:17 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,14 +202,14 @@ namespace ft
 			reference at(size_type n)
 			{
 				if (n < 0 || n > _size)
-					throw std::out_of_range
-				return (&this->_value[n]);
+					throw (std::out_of_range("out of range"));
+				return (this->_value[n]);
 			}
 			const_reference at (size_type n) const
 			{
 				if (n < 0 || n > _size)
-					throw std::out_of_range
-				return ((const)&this->_value[n]);
+					throw (std::out_of_range("out of range"));
+				return (this->_value[n]);
 			}
 
 			void clear(void)

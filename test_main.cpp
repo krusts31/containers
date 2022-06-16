@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 23:45:41 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/17 00:36:37 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,12 +377,12 @@ int main()
 	{
 		int	size = std::rand() % 100;
 
-		mini_test_func_4<int>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
-		mini_test_func_4<float>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<int>(size_of_vec, resize, "resize(" + std::to_string(size) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<float>(size_of_vec, resize, "resize(" + std::to_string(size) + ")", CONSTRUCTOR, size);
 		mini_test_func_4<double>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
-		mini_test_func_4<std::string>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + rs + ")", CONSTRUCTOR, size);
-		mini_test_func_4<char>(size_of_vec, resize, "resize(" + std::to_string(size) + ", x)", CONSTRUCTOR, size); 
-		mini_test_func_4<char **>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " , CONSTRUCTOR, size);
+		mini_test_func_4<std::string>(size_of_vec, resize, "resize(" + std::to_string(size) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<char>(size_of_vec, resize, "resize(" + std::to_string(size) + ")", CONSTRUCTOR, size); 
+		mini_test_func_4<char **>(size_of_vec, resize, "resize(" + std::to_string(size) + ")" , CONSTRUCTOR, size);
 	}
 
 #ifdef LEAKS
