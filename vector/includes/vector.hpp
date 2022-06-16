@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 22:24:50 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 23:49:07 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_HPP
 # include <iostream>
 # include <assert.h>
+# include <stdexcept>
 # include "iterator.hpp"
 
 namespace ft
@@ -135,6 +136,33 @@ namespace ft
 				return (_allocator.max_size());
 			}
 
+			void resize(size_type n, value_type val = value_type())
+			{
+				pointer _tmp_value = _allocator.allocate(n);
+
+				if (_size < n)
+				{
+					for (size_t i = 0; i < _size; i++)
+						_allocator.construct(&_tmp_value[i], this->_value[i]);
+					for (size_t i = _size; i < n; i++)
+						_allocator.construct(&_tmp_value[i], val);
+				}
+				else
+				{
+					for (size_t i = 0; i < n; i++)
+						_allocator.construct(&_tmp_value[i], this->_value[i]);
+				}
+				for (size_t i = 0; i < _size; i++)
+					_allocator.destroy(&this->_value[i]);
+				_allocator.deallocate(_value, _capacity);
+				_size = n;
+				_capacity = n;
+				_value = _tmp_value;
+				_begin = &this->_value[0];
+				_end = &this->_value[_size];
+				_end_of_storage = &this->_value[_size + 1];
+			}
+
 			size_type capacity(void) const
 			{
 				return (_capacity);
@@ -164,43 +192,24 @@ namespace ft
 				}
 			}
 
-			void resize(size_type n, value_type val = value_type())
-			{
-				pointer _tmp_value = _allocator.allocate(n);
-
-				if (_size < n)
-				{
-					for (size_t i = 0; i < _size; i++)
-						_allocator.construct(&_tmp_value[i], this->_value[i]);
-					for (size_t i = _size; i < n; i++)
-						_allocator.construct(&_tmp_value[i], val);
-				}
-				else
-				{
-					for (size_t i = 0; i < n; i++)
-						_allocator.construct(&_tmp_value[i], this->_value[i]);
-				}
-				for (size_t i = 0; i < _size; i++)
-					_allocator.destroy(&this->_value[i]);
-				_allocator.deallocate(_value, _capacity);
-				_size = n;
-				_capacity = n;
-				_value = _tmp_value;
-				_begin = &this->_value[0];
-				_end = &this->_value[_size];
-				_end_of_storage = &this->_value[_size + 1];
-
-				//for (size_t i = 0; i < n; i++)
-			//		std::cout << _tmp_value[i] << std::endl;
-
-			}
-			
-			//shrink to fit
-			
+			//Accsess elements
 			vector<_Tp, _Allocator>operator[](size_type)
 			{
 				assert(index < size());
 				return(this->_begin[index]);
+			}
+
+			reference at(size_type n)
+			{
+				if (n < 0 || n > _size)
+					throw std::out_of_range
+				return (&this->_value[n]);
+			}
+			const_reference at (size_type n) const
+			{
+				if (n < 0 || n > _size)
+					throw std::out_of_range
+				return ((const)&this->_value[n]);
 			}
 
 			void clear(void)
@@ -211,6 +220,7 @@ namespace ft
 			}
 
 
+//Iteratros
 			iterator begin(void)
 			{
 				return(iterator(_begin));
@@ -230,14 +240,7 @@ namespace ft
 			{
 				return(const_iterator(_end));
 			}
-/*
-			void resize (size_type n, value_type val = value_type())
-			{
-				;
-			}
-*/
-			reference at (size_type n);
-			const_reference at (size_type n) const;
+
 		protected:
 			/*template <class InputIterator>
 			vector (InputIterator first, InputIterator last, const _Allocator& alloc = _Allocator())

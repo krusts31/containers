@@ -1,12 +1,18 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
-int	main()
+int main ()
 {
-	std::vector<int> v(40);
+  std::vector<int> myvector (10);   // 10 zero-initialized ints
 
-	v.resize(20, -23);
-	for (std::vector<int>::iterator iter = v.begin(); iter != v.end(); iter++)
-		std::cout << *iter << std::endl;
+	myvector.at(1)=3;
+   	myvector.at(2)=4;
+
+	std::cout << myvector.at(2) - myvector.at(1) << std::endl;
+  std::cout << "myvector contains:";
+  for (unsigned i=0; i<myvector.size(); i++)
+    std::cout << ' ' << myvector.at(i);
+  std::cout << '\n';
+
+  return 0;
 }

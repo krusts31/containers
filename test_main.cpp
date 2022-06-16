@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 22:17:16 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 23:45:41 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int main()
 	using namespace mini_test;
 
 	enum constructor{def, fill, fill_2, range, copy};
-	int	size_of_vec = 400;
+	int	size_of_vec = 4;
 
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
@@ -347,6 +347,9 @@ int main()
 #endif
 */
 
+/*
+ *	Add a singe arg resize test
+ */
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
 		int	size = std::rand() % 100;
@@ -360,6 +363,26 @@ int main()
 		mini_test_func_3<char>(size_of_vec, resize, "resize(" + std::to_string(size) + ", x)", CONSTRUCTOR, size, 'x'); 
 	//	mini_test_func_3<char *>(size_of_vec, resize, "resize(" + std::to_string(size) + ", ",  CONSTRUCTOR, size, test); 
 		mini_test_func_3<char **>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " , CONSTRUCTOR, size, NULL);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+
+/*
+ *	Add a singe arg resize test
+ */
+
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		int	size = std::rand() % 100;
+
+		mini_test_func_4<int>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<float>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<double>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size);
+		mini_test_func_4<std::string>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + rs + ")", CONSTRUCTOR, size);
+		mini_test_func_4<char>(size_of_vec, resize, "resize(" + std::to_string(size) + ", x)", CONSTRUCTOR, size); 
+		mini_test_func_4<char **>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " , CONSTRUCTOR, size);
 	}
 
 #ifdef LEAKS
