@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/03 12:54:14 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/10 21:18:56 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 14:28:12 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ namespace ft
 			iterator(const iterator& mit) : p(mit.p) {}
 
 			iterator	&operator++() {++p; return *this;}
+			iterator	&operator--() {--p; return *this;}
+			iterator	operator--(int) {iterator tmp(*this); operator--(); return tmp;}
 			iterator	operator++(int) {iterator tmp(*this); operator++(); return tmp;}
 			bool		operator==(const iterator& rhs) const {return p==rhs.p;}
 			bool		operator!=(const iterator& rhs) const {return p!=rhs.p;}

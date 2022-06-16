@@ -14,6 +14,22 @@ bool	empty(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 }
 
 template < class T >
+bool	resize(std::vector<T> *std_vec, ft::vector<T> *ft_vec, unsigned int size, T val)
+{
+	std_vec->resize(size, val);
+	ft_vec->resize(size, val);
+
+	typename std::vector<T>::iterator std_iter = std_vec->begin();
+	for (typename ft::vector<T>::iterator ft_iter = ft_vec->begin(); ft_iter != ft_vec->end(); ft_iter++)
+	{
+		if (*ft_iter != *std_iter)
+			return (false);
+		std_iter++;
+	}
+	return (true);
+}
+
+template < class T >
 bool	begin(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
 	typename std::vector<T>::iterator	std_iterator = std_vec->begin();
@@ -29,23 +45,16 @@ bool	begin(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 template < class T >
 bool	end(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
-	typename std::vector<T>::iterator	std_iterator = std_vec->end();
-	//typename ft::vector<T>::iterator		ft_iterator = ft_vec->end();
+	typename std::vector<T>::iterator		std_iterator = std_vec->end();
+	typename ft::vector<T>::iterator		ft_iterator = ft_vec->end();
 
-	//if the vectors are empty then there is segault when derefrescing a iterator
-	if (!ft_vec->size() && !std_vec->size())
+	if (ft_vec->size() && std_vec->size())
 		return (true);
-	std::cout << std_vec->size() << " " << ft_vec->size() << std::endl;
-	//std::cout << *ft_iterator << " " << *std_iterator << std::endl;
-	//typename std::vector<T>::iterator	std_iterator_2 = std_vec->begin();
-	/*while (std_iterator != std_iterator_2)
-	{
-		std::cout << *std_iterator << std::endl;
-		std_iterator++;
-	}*/
-	std::cout << *std_iterator << std::endl;
-		return (false);
-	return (true);
+	std_iterator--;
+	ft_iterator--;
+	if (*ft_iterator == *std_iterator)
+		return (true);
+	return (false);
 }
 
 bool	is_fill_constructor_working(void)

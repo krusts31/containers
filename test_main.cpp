@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/15 11:35:14 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 18:53:36 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include <time.h>
 
 #include <string.h>
-#include <string>
-
+#include <string> 
 #include <type_traits>
 
 //vector has 3
@@ -28,6 +27,21 @@
 //template < class T, class args_1, class args_2 > int, iter, iter 
 //the unit mini_tester has to mini_test some things like leaks
 //the unit thet has to mini_test the functoins 
+
+std::string gen_random(const int len) {
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+    std::string tmp_s;
+    tmp_s.reserve(len);
+
+    for (int i = 0; i < len; ++i) {
+        tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+    
+    return tmp_s;
+}
 
 enum constructor{def, fill, fill_2, range, copy};
 
@@ -72,6 +86,60 @@ void	mini_test_func_2(int size_of_vec,
 		size_of_vec--;
 		if (def == constructor)
 			return ;
+	}
+}
+
+//how to test function that take argumetns?
+//well you need to pass the to the mini_test_func_3 
+//this and then or add a nother loop to the existing loop
+template < class T>
+void	mini_test_func_3(int size_of_vec,
+		bool (*f)(std::vector<T> *, ft::vector<T> *, unsigned int, T),
+		std::string name,
+		int constructor,
+		unsigned int arg_1,
+		T arg_2)
+{
+	ft::vector<T>		*ft_vec;
+	std::vector<T>		*std_vec;
+	int					iterations = 10;
+
+	while (iterations)
+	{
+		while (size_of_vec != -1)
+		{
+			if (constructor == def)
+			{
+				ft_vec = new ft::vector<T>;
+				std_vec = new std::vector<T>;
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
+			}
+			else if (constructor == fill)
+			{
+				ft_vec = new ft::vector<T>(size_of_vec);
+				std_vec = new std::vector<T>(size_of_vec + 20);
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
+			}
+			else if (constructor == fill_2)
+			{
+				ft_vec = new ft::vector<T>(size_of_vec, T());
+				std_vec = new std::vector<T>(size_of_vec + 20, T());
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
+			}
+			else
+			{
+				return ;
+				ft_vec = new ft::vector<T>;
+				std_vec = new std::vector<T>;
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
+			}
+			delete ft_vec;
+			delete std_vec;
+			size_of_vec--;
+			if (def == constructor)
+				return ;
+		}
+		iterations--;
 	}
 }
 
@@ -262,6 +330,7 @@ int main()
 	system("leaks a.out");
 #endif
 
+	/*
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
 		mini_test_func<int>(size_of_vec, end, "end()", CONSTRUCTOR);
@@ -271,6 +340,22 @@ int main()
 		mini_test_func<char>(size_of_vec, end, "end()", CONSTRUCTOR);
 		mini_test_func<char *>(size_of_vec, end, "end()", CONSTRUCTOR);
 		mini_test_func<char **>(size_of_vec, end, "end()", CONSTRUCTOR);
+	}
+
+#ifdef LEAKS
+	system("leaks a.out");
+#endif
+*/
+
+	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
+	{
+		mini_test_func_3<int>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, rand() % INT_MAX);
+		mini_test_func_3<float>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, (float)((rand() % INT_MAX) / 3));
+		mini_test_func_3<double>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, (double)((rand() % INT_MAX) / 3));
+		mini_test_func_3<std::string>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, gen_random(rand() % 200));
+		mini_test_func_3<char>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, 'x'); 
+		mini_test_func_3<char *>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, NULL); 
+		mini_test_func_3<char **>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, NULL);
 	}
 
 #ifdef LEAKS

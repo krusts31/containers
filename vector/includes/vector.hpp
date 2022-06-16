@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/11 00:21:45 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 16:27:05 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,13 @@ namespace ft
 			}
 			*/
 
+			//allocator
 			allocator_type get_allocator(void) const
 			{
 				return (_allocator);
 			}
 
+			//Capacity:
 			size_type size(void) const
 			{
 				return (_size);
@@ -131,12 +133,6 @@ namespace ft
 			size_type max_size(void) const
 			{
 				return (_allocator.max_size());
-			}
-
-			vector<_Tp, _Allocator>operator[](size_type)
-			{
-				assert(index < size());
-				return(this->_begin[index]);
 			}
 
 			size_type capacity(void) const
@@ -149,19 +145,12 @@ namespace ft
 				return (_size == 0 ? true : false);
 			}
 
-			void clear(void)
-			{
-				//iterator over values and call deconstrucotr
-				//set size to 0
-				//do not dealloc space
-			}
-
 			void reserve(size_type n)
 			{
-				//reserver is tricky
 				if (n > _size)
 				{
 					pointer _tmp_value = _allocator.allocate(n);
+
 					for (size_t i = 0; i < n; i++)
 						_allocator.construct(&_tmp_value[i], _t);
 					for (size_t i = 0; i < _size; i++)
@@ -174,6 +163,35 @@ namespace ft
 					_end_of_storage = &this->_value[_size + 1];
 				}
 			}
+
+			void resize(size_type n, value_type val = value_type())
+			{
+				pointer _tmp_value = _allocator.allocate(n);
+
+				for (size_t i = 0; i < _size; i++)
+					_tmp_value[i] = this->_value[i];
+				for (size_t i = _size; i < n; i++)
+					_allocator.construct(&_tmp_value[i], val);
+				for (size_t i = 0; i < n; i++)
+					std::cout << _tmp_value[i] << std::endl;
+
+			}
+			
+			//shrink to fit
+			
+			vector<_Tp, _Allocator>operator[](size_type)
+			{
+				assert(index < size());
+				return(this->_begin[index]);
+			}
+
+			void clear(void)
+			{
+				//iterator over values and call deconstrucotr
+				//set size to 0
+				//do not dealloc space
+			}
+
 
 			iterator begin(void)
 			{
