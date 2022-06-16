@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/28 14:13:08 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 16:27:05 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 22:24:50 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,12 +168,30 @@ namespace ft
 			{
 				pointer _tmp_value = _allocator.allocate(n);
 
+				if (_size < n)
+				{
+					for (size_t i = 0; i < _size; i++)
+						_allocator.construct(&_tmp_value[i], this->_value[i]);
+					for (size_t i = _size; i < n; i++)
+						_allocator.construct(&_tmp_value[i], val);
+				}
+				else
+				{
+					for (size_t i = 0; i < n; i++)
+						_allocator.construct(&_tmp_value[i], this->_value[i]);
+				}
 				for (size_t i = 0; i < _size; i++)
-					_tmp_value[i] = this->_value[i];
-				for (size_t i = _size; i < n; i++)
-					_allocator.construct(&_tmp_value[i], val);
-				for (size_t i = 0; i < n; i++)
-					std::cout << _tmp_value[i] << std::endl;
+					_allocator.destroy(&this->_value[i]);
+				_allocator.deallocate(_value, _capacity);
+				_size = n;
+				_capacity = n;
+				_value = _tmp_value;
+				_begin = &this->_value[0];
+				_end = &this->_value[_size];
+				_end_of_storage = &this->_value[_size + 1];
+
+				//for (size_t i = 0; i < n; i++)
+			//		std::cout << _tmp_value[i] << std::endl;
 
 			}
 			

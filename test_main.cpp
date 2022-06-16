@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/16 18:53:36 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/16 22:17:16 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ void	mini_test_func_3(int size_of_vec,
 			else if (constructor == fill)
 			{
 				ft_vec = new ft::vector<T>(size_of_vec);
-				std_vec = new std::vector<T>(size_of_vec + 20);
+				std_vec = new std::vector<T>(size_of_vec);
 				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
 			}
 			else if (constructor == fill_2)
 			{
 				ft_vec = new ft::vector<T>(size_of_vec, T());
-				std_vec = new std::vector<T>(size_of_vec + 20, T());
+				std_vec = new std::vector<T>(size_of_vec, T());
 				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
 			}
 			else
@@ -192,7 +192,7 @@ int main()
 	using namespace mini_test;
 
 	enum constructor{def, fill, fill_2, range, copy};
-	int	size_of_vec = 2;
+	int	size_of_vec = 400;
 
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
@@ -349,13 +349,17 @@ int main()
 
 	for (int CONSTRUCTOR = def; CONSTRUCTOR <= copy;  CONSTRUCTOR++)
 	{
-		mini_test_func_3<int>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, rand() % INT_MAX);
-		mini_test_func_3<float>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, (float)((rand() % INT_MAX) / 3));
-		mini_test_func_3<double>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, (double)((rand() % INT_MAX) / 3));
-		mini_test_func_3<std::string>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, gen_random(rand() % 200));
-		mini_test_func_3<char>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, 'x'); 
-		mini_test_func_3<char *>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, NULL); 
-		mini_test_func_3<char **>(size_of_vec, resize, "resize()", CONSTRUCTOR, 40, NULL);
+		int	size = std::rand() % 100;
+		int	rand = std::rand() % INT_MAX;
+		std::string rs = gen_random(std::rand() % 10);
+
+		mini_test_func_3<int>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size, rand);
+		mini_test_func_3<float>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size, (float)rand);
+		mini_test_func_3<double>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + std::to_string(rand) + ")", CONSTRUCTOR, size, (double)rand);
+		mini_test_func_3<std::string>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " + rs + ")", CONSTRUCTOR, size, rs);
+		mini_test_func_3<char>(size_of_vec, resize, "resize(" + std::to_string(size) + ", x)", CONSTRUCTOR, size, 'x'); 
+	//	mini_test_func_3<char *>(size_of_vec, resize, "resize(" + std::to_string(size) + ", ",  CONSTRUCTOR, size, test); 
+		mini_test_func_3<char **>(size_of_vec, resize, "resize(" + std::to_string(size) + ", " , CONSTRUCTOR, size, NULL);
 	}
 
 #ifdef LEAKS

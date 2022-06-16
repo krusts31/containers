@@ -16,14 +16,17 @@ bool	empty(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 template < class T >
 bool	resize(std::vector<T> *std_vec, ft::vector<T> *ft_vec, unsigned int size, T val)
 {
-	std_vec->resize(size, val);
 	ft_vec->resize(size, val);
+	std_vec->resize(size, val);
 
 	typename std::vector<T>::iterator std_iter = std_vec->begin();
 	for (typename ft::vector<T>::iterator ft_iter = ft_vec->begin(); ft_iter != ft_vec->end(); ft_iter++)
 	{
 		if (*ft_iter != *std_iter)
+		{
+			std::cout << "ft_iter: "<< *ft_iter << " std_iter:: " << *std_iter <<  " " << ft_vec->size() << " " << std_vec->size() << std::endl;
 			return (false);
+		}
 		std_iter++;
 	}
 	return (true);
