@@ -7,6 +7,46 @@
 #include <cstdarg>
 
 template < class T >
+bool	at(std::vector<T> *std_vec, ft::vector<T> *ft_vec, unsigned int index)
+{
+	T	ft_val;
+	T	std_val;
+	std::out_of_range ft_e("");
+	std::out_of_range std_e("");
+
+	try 
+	{
+		std_val = std_vec->at(index);
+	}
+	catch (const std::out_of_range& e)
+	{
+		std_e = e;
+	}
+	try 
+	{
+		ft_val = ft_vec->at(index);
+	}
+	catch (const std::out_of_range& e)
+	{
+		ft_e = e;
+	}
+	std::string std_error  = std_e.what();
+	std::string ft_error  = ft_e.what();
+
+	if (std_error.empty() == 0 || ft_error.compare("") != 0)
+	{
+		std::cerr << "ft: " << ft_e.what() << " std: " << std_e.what() << std::endl;
+		return (false);
+	}
+	if (ft_val != std_val)
+	{
+		std::cout << ft_val << " " << std_val << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+template < class T >
 bool	empty(std::vector<T> *std_vec, ft::vector<T> *ft_vec)
 {
 	assert(ft_vec->empty() == std_vec->empty());

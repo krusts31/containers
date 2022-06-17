@@ -6,7 +6,7 @@
 /*   By: alkrusts <alkrusts@student.codam.n>          +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/02 18:13:07 by alkrusts      #+#    #+#                 */
-/*   Updated: 2022/06/17 00:38:43 by alkrusts      ########   odam.nl         */
+/*   Updated: 2022/06/17 15:01:01 by alkrusts      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,56 @@ void	mini_test_func_3(int size_of_vec,
 				ft_vec = new ft::vector<T>;
 				std_vec = new std::vector<T>;
 				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1, arg_2);
+			}
+			delete ft_vec;
+			delete std_vec;
+			size_of_vec--;
+			if (def == constructor)
+				return ;
+		}
+		iterations--;
+	}
+}
+
+template < class T>
+void	mini_test_func_4(int size_of_vec,
+		bool (*f)(std::vector<T> *, ft::vector<T> *, unsigned int),
+		std::string name,
+		int constructor,
+		unsigned int arg_1)
+{
+	ft::vector<T>		*ft_vec;
+	std::vector<T>		*std_vec;
+	int					iterations = 10;
+
+	while (iterations)
+	{
+		while (size_of_vec != -1)
+		{
+			if (constructor == def)
+			{
+				ft_vec = new ft::vector<T>;
+				std_vec = new std::vector<T>;
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1);
+			}
+			else if (constructor == fill)
+			{
+				ft_vec = new ft::vector<T>(size_of_vec);
+				std_vec = new std::vector<T>(size_of_vec);
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1);
+			}
+			else if (constructor == fill_2)
+			{
+				ft_vec = new ft::vector<T>(size_of_vec, T());
+				std_vec = new std::vector<T>(size_of_vec, T());
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1);
+			}
+			else
+			{
+				return ;
+				ft_vec = new ft::vector<T>;
+				std_vec = new std::vector<T>;
+				mini_test::mini_test<T>(name, f, ft_vec, std_vec, constructor, size_of_vec, T(), T(), arg_1);
 			}
 			delete ft_vec;
 			delete std_vec;
